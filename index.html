@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!-- 
+ Display forgeofempires JSON 
+ Copyright (C) 2017 modulo22
+ 
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+  
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<html>
+<head>
+<title>Foe stats</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="css/default.css" rel="stylesheet" />
+<!-- <script src="data1.js" type="text/javascript"></script> -->
+<!-- <script src="data2.js" type="text/javascript"></script> -->
+<script src="jquery.js" type="text/javascript"></script>
+<script src="js/bootstrap.js" type="text/javascript"></script>
+<script src="moment.js" type="text/javascript"></script>
+<script src="lodash.js" type="text/javascript"></script>
+<script src="chart.js" type="text/javascript"></script>
+<script src="script.js" type="text/javascript"></script>
+</head>
+<style>
+	table.table.table-hover {
+	 cursor: pointer;
+	}
+	
+	.activate {
+	 font-weight: bold;
+	}
+</style>
+<body>
+	<div class="container">
+		<h1>Foe stats</h1>
+		<div>
+			Events: <span id="event-status"></span> Friends: <span
+				id="friend-status"></span> Guild: <span id="guild-status"></span>
+			Neighbors: <span id="neighbor-status"></span>
+		</div>
+		<div>
+			Since: <span id="from-date"></span>
+		</div>
+		<ul class="nav nav-tabs" id="myTabs" role="tablist">
+			<li role="presentation" class="active"><a href="#input"
+				id="input-tab" role="tab" data-toggle="tab" aria-controls="home"
+				aria-expanded="true">Input</a></li>
+			<li role="presentation"><a href="#tavern-pane" role="tab"
+				id="tavern-tab" data-toggle="tab" aria-controls="tavern">Tavern</a></li>
+			<li role="presentation"><a href="#help-pane" role="tab"
+				id="help-tab" data-toggle="tab" aria-controls="po">Polish/motivate</a></li>
+		</ul>
+		<div class="tab-content" id="myTabContent">
+			<div class="tab-pane fade in active" role="tabpanel" id="input"
+				aria-labelledby="input-tab">
+				<form onsubmit="javascript:return false">
+					<textarea id="input-text" class="form-control"></textarea>
+					<button type="button" id="input-button" class="btn btn-primary">Update</button>
+				</form>
+
+				<h2>Usage</h2>
+
+				This is the usage for Google Chrome browser.
+				<hr />
+				<h3>Open developer tools</h3>
+
+				<p>Go to forgeofempires.com and connect you to your world.</p>
+
+				<img src="screen1.png" class="img-responsive" />
+				<ul>
+					<li>1. Open the menu</li>
+					<li>2. Click on <strong>More tools</strong></li>
+					<li>3. Click on <strong>Developer tools</strong></li>
+				</ul>
+				<hr />
+				<h3>Filter requests</h3>
+				<img src="screen2.png" class="img-responsive" />
+				<ul>
+					<li>1. Click on <strong>Network</strong></li>
+					<li>2. Enter the filter <strong>json</strong></li>
+					<li>3. Reload the page with the button in the left near the
+						address bar</li>
+				</ul>
+				<hr />
+				<h3>Copy requests</h3>
+				<img src="screen3.png" class="img-responsive" />
+				<ul>
+					<li>1. Click on a request filtered</li>
+					<li>2. Click on <strong>Response</strong></li>
+					<li>3. Select the response with click and Control+A</li>
+					<li>4. Copy the response with Control+C</li>
+				</ul>
+				<hr />
+				<h3>Update statistics</h3>
+
+				<p>In this page</p>
+
+				<img src="screen4.png" class="img-responsive" />
+				<ul>
+					<li>1. Click on the text field and copy the response with
+						Control+V</li>
+					<li>2. Click on <strong>Update</strong></li>
+					<li>3. Repeat the operation with all the json for having all
+						check OK</li>
+				</ul>
+
+				<p>
+					In order to get all JSON, you may need to open <strong>Event
+						history</strong> and display <strong>friend list</strong>, <strong>guild
+						list</strong> and <strong>neighbors</strong>.
+				</p>
+				<p>You can see Tavern sit and Polish/motivate in the other tabs.</p>
+
+			</div>
+			<div class="tab-pane" role="tabpanel" id="tavern-pane"
+				aria-labelledby="tavern-tab">
+				<canvas id="tavernchart" width="1000" height="400"></canvas>
+				<div id="tavern"></div>
+			</div>
+			<div class="tab-pane" role="tabpanel" id="help-pane"
+				aria-labelledby="help-tab">
+				<div class="btn-group" role="group">
+					<button type="button" class="btn btn-default" id="guild">
+						<span class="glyphicon glyphicon-tower"></span> Guild
+					</button>
+					<button type="button" class="btn btn-default" id="friend">
+						<span class="glyphicon glyphicon-user"></span> Friend
+					</button>
+				</div>
+				<canvas id="helpchart" width="1000" height="400"></canvas>
+				<div id="help"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
